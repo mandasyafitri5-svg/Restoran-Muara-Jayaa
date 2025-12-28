@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Restoran Muara Jaya – Masakan Nusantara Premium</title>
+  <meta name="description" content="Restoran Muara Jaya, masakan Nusantara enak, halal, dan canggih di Jl. S. Parman No. A1, Medan Baru." />
+
+  <!-- Font Google: Plus Jakarta Sans (Modern) & Playfair Display (Elegan) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Ikon (Phosphor Icons) -->
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+  <style>
+    /* ----- CONFIG & VARIABEL ----- */
+    :root {
+      /* Warna Premium: Terracotta, Gold, Deep Charcoal */
+      --primary: #c05621;       /* Terracotta yang dalam */
+      --primary-hover: #9e4415;
+      --secondary: #d97706;     /* Gold/Amber yang hangat */
+      --accent: #fbbf24;        /* Gold muda untuk detail kecil */
+      --gold: #b45309;          /* Emas solid */
+      
+      --dark: #1c1917;          /* Hampir hitam, lebih lembut */
+      --light: #f5f5f4;         /* Off-white cool */
+      --surface: #ffffff;
+      --surface-glass: rgba(255, 255, 255, 0.85);
+      --surface-alt: #fafaf9;   /* Warm Stone */
+      
+      --text: #27272a;          /* Charcoal untuk bacaan utama */
+      --text-muted: #737373;    /* Abu-abu elegan */
+      
+      --border: rgba(0, 0, 0, 0.06);
+      --glass-border: rgba(255, 255, 255, 0.2);
+      
+      --shadow-soft: 0 20px 40px -10px rgba(0, 0, 0, 0.08);
+      --shadow-card: 0 10px 30px -5px rgba(0, 0, 0, 0.05);
+      --shadow-hover: 0 25px 50px -12px rgba(192, 86, 33, 0.15);
+      
+      --radius-lg: 24px;
+      --radius-md: 16px;
+      --radius-sm: 8px;
+      --radius-full: 999px;
+      
+      --header-height: 80px;
+      --transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1); /* Transisi halus */
+    }
+
+    /* ----- RESET & DASAR ----- */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-family: "Plus Jakarta Sans", sans-serif;
+      font-size: 16px;
+      color: var(--text);
+      background-color: var(--surface-alt);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: "Playfair Display", serif;
+      color: var(--dark);
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    h1 { line-height: 1.2; }
+    h2 { line-height: 1.3; }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    button {
+      font: inherit;
+      border: none;
+      background: none;
+      cursor: pointer;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1140px; /* Lebar konten lebih luas */
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ----- BADGE & BUTTONS ----- */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      border-radius: var(--radius-full);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .badge-primary {
+      background: var(--primary);
+      color: white;
+      box-shadow: 0 8px 16px rgba(192, 86, 33, 0.3);
+    }
+
+    .badge-outline {
+      background: transparent;
+      border: 1px solid var(--primary);
+      color: var(--primary);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 32px;
+      border-radius: var(--radius-full);
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      box-shadow: 0 10px 20px rgba(192, 86, 33, 0.4);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 30px rgba(192, 86, 33, 0.5);
+    }
+
+    .btn-outline {
+      background: white;
+      color: var(--primary);
+      border: 1px solid rgba(192, 86, 33, 0.2);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--primary);
+      transform: translateY(-2px);
+    }
+
+    /* ----- HEADER GLASSMORPHISM ----- */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      height: var(--header-height);
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 100%;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: "Playfair Display", serif;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--primary);
+      font-size: 1.5rem;
+    }
+
+    .logo-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.2rem;
+      box-shadow: 0 4px 12px rgba(192, 86, 33, 0.3);
+    }
+
+    .nav {
+      display: flex;
+      gap: 40px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .nav a {
+      padding: 8px 0;
+      position: relative;
+    }
+
+    .nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: width 0.3s ease;
+    }
+
+    .nav a:hover::after,
+    .nav a.active::after {
+      width: 100%;
+    }
+
+    .nav a.active {
+      color: var(--primary);
+    }
+
+    /* Mobile Nav Elements */
+    .nav-toggle {
+      display: none;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: #f5f5f4;
+      align-items: center;
+      justify-content: center;
+      color: var(--dark);
+      transition: all 0.3s;
+    }
+    
+    .nav-toggle:hover { background: #e7e5e4; }
+
+    .mobile-nav {
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      background: white;
+      transform: translateX(100%);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+      padding: 40px 24px;
+    }
+    
+    .mobile-nav.open { transform: translateX(0); }
+
+    .mobile-nav-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 40px;
+    }
+
+    .mobile-nav a {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--dark);
+      padding: 16px 0;
+      border-bottom: 1px solid #f5f5f4;
+    }
+
+    @media (max-width: 900px) {
+      .nav { display: none; }
+      .nav-toggle { display: flex; }
+    }
+
+    /* ----- HERO SECTION (Premium Dark) ----- */
+    .hero {
+      padding-top: calc(var(--header-height) + 60px);
+      padding-bottom: 80px;
+      position: relative;
+      background-color: var(--dark);
+      color: white;
+      overflow: hidden;
+    }
+
+    /* Background Pattern */
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: 
+        radial-gradient(circle at 10% 20%, rgba(192, 86, 33, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(192, 86, 33, 0.15) 0%, transparent 40%);
+      z-index: 1;
+    }
+    
+    /* Mesh Gradient Overlay */
+    .hero-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=2070&auto=format&fit=crop') no-repeat center center/cover;
+      opacity: 0.4;
+      z-index: 0;
+      mix-blend-mode: overlay;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .hero-text {
+      max-width: 600px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      margin-bottom: 24px;
+      color: white;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(to right, #fcd34d, #f59e0b);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-tagline {
+      font-size: 1.125rem;
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 40px;
+      line-height: 1.7;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 32px;
+      margin-top: 48px;
+      padding-top: 32px;
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .stat h4 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: white;
+    }
+
+    .stat span {
+      font-size: 0.875rem;
+      color: rgba(255, 255, 255, 0.6);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    @media (max-width: 768px) {
+      .hero-content { grid-template-columns: 1fr; text-align: center; }
+      .hero-stats { justify-content: center; }
+      .hero-text { margin: 0 auto; }
+    }
+
+    /* ----- SECTIONS GENERAL ----- */
+    .section {
+      padding: 100px 0;
+    }
+
+    .section-heading {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 64px;
+    }
+
+    .section-heading h2 {
+      font-size: 2.5rem;
+      margin-bottom: 16px;
+    }
+
+    .section-heading p {
+      color: var(--text-muted);
+      font-size: 1.125rem;
+    }
+
+    /* ----- MENU CARDS (Premium Look) ----- */
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 32px;
+    }
+
+    .menu-card {
+      background: white;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-card);
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .menu-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .menu-img-wrapper {
+      width: 100%;
+      aspect-ratio: 4/3;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .menu-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .menu-card:hover .menu-img {
+      transform: scale(1.1);
+    }
+
+    .menu-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+      opacity: 0;
+      transition: 0.4s;
+    }
+
+    .menu-card:hover .menu-overlay { opacity: 1; }
+
+    .menu-content {
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      flex-grow: 1;
+    }
+
+    .menu-badge {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      width: fit-content;
+    }
+
+    .badge-hot { background: #fef2f2; color: #dc2626; }
+    .badge-best { background: #fffbeb; color: #d97706; }
+
+    .menu-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--dark);
+    }
+
+    .menu-desc {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .menu-tags {
+      margin-top: auto;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .menu-tag {
+      font-size: 0.75rem;
+      padding: 4px 10px;
+      background: #f5f5f4;
+      color: var(--text-muted);
+      border-radius: 4px;
+    }
+
+    /* ----- CATERING SECTION ----- */
+    .catering {
+      background: linear-gradient(135deg, #fff7ed 0%, #ffffff 100%);
+      border-radius: var(--radius-lg);
+      padding: 64px;
+      border: 1px solid rgba(192, 86, 33, 0.1);
+    }
+
+    .catering-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+      margin-top: 48px;
+    }
+
+    .catering-card {
+      background: white;
+      padding: 32px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      transition: var(--transition);
+    }
+
+    .catering-card:hover {
+      border-color: var(--primary);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .catering-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--dark);
+    }
+
+    /* ----- TESTIMONI ----- */
+    .testi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+    }
+
+    .testi-card {
+      background: white;
+      padding: 32px;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      position: relative;
+    }
+
+    .testi-card::before {
+      content: "\201C";
+      font-family: serif;
+      font-size: 5rem;
+      color: rgba(192, 86, 33, 0.1);
+      position: absolute;
+      top: 10px;
+      left: 24px;
+      line-height: 1;
+    }
+
+    .testi-rating {
+      color: var(--accent);
+      margin-bottom: 16px;
+      display: flex;
+      gap: 4px;
+    }
+
+    .testi-text {
+      font-style: italic;
+      color: var(--text);
+      margin-bottom: 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .testi-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .testi-avatar {
+      width: 40px;
+      height: 40px;
+      background: var(--light);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+
+    /* ----- CONTACT & FOOTER ----- */
+    .footer {
+      background-color: var(--dark);
+      color: rgba(255, 255, 255, 0.7);
+      padding: 80px 0 40px;
+      margin-top: 80px;
+    }
+
+    .footer h3 {
+      color: white;
+      font-family: "Plus Jakarta Sans", sans-serif;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 24px;
+    }
+
+    .footer a:hover { color: white; }
+    
+    .footer-bottom {
+      margin-top: 60px;
+      padding-top: 40px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      text-align: center;
+      font-size: 0.875rem;
+    }
+
+    /* Info Layout */
+    .info-layout {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 48px;
+    }
+    
+    @media (max-width: 768px) { .info-layout { grid-template-columns: 1fr; } }
+
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container header-inner">
+      <div class="logo">
+        <div class="logo-icon">
+          <i class="ph ph-fork-knife"></i>
+        </div>
+        <span>MUARA JAYA</span>
+      </div>
+
+      <nav class="nav">
+        <a href="#home" class="active">Beranda</a>
+        <a href="#menu">Menu</a>
+        <a href="#catering">Layanan</a>
+        <a href="#testimoni">Ulasan</a>
+        <a href="#contact">Kontak</a>
+      </nav>
+
+      <button class="nav-toggle">
+        <i class="ph ph-list" style="font-size: 1.25rem;"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Nav -->
+  <div class="mobile-nav">
+    <div class="mobile-nav-header">
+      <span style="font-weight: 800; font-size: 1.25rem;">MENU</span>
+      <button class="nav-toggle"><i class="ph ph-x" style="font-size: 1.25rem;"></i></button>
+    </div>
+    <a href="#home">Beranda</a>
+    <a href="#menu">Menu</a>
+    <a href="#catering">Layanan</a>
+    <a href="#testimoni">Ulasan</a>
+    <a href="#contact">Kontak</a>
+  </div>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <div class="hero-bg"></div>
+    <div class="container hero-content">
+      <div class="hero-text">
+        <span class="badge badge-primary" style="margin-bottom: 24px;">
+          <i class="ph ph-certificate"></i> Halal & Premium
+        </span>
+        <h1>
+          Cita Rasa Nusantara<br />
+          <span>Dalam Setiap Suapan</span>
+        </h1>
+        <p class="hero-tagline">
+          Nikmati kekayaan kuliner Indonesia di Restoran Muara Jaya. 
+          Dari Gulai Kepala Ikan yang kaya rempah hingga Nasi Liwet yang nikmat, 
+          kami menghadirkan pengalaman kuliner yang tidak terlupakan.
+        </p>
+        <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+          <a class="btn btn-primary" href="https://wa.me/6287867069200?text=Halo%20Muara%20Jaya,%20saya%20ingin%20reservasi..." target="_blank">
+            <i class="ph ph-whatsapp-logo"></i> Reservasi Meja
+          </a>
+          <a class="btn btn-outline" href="#menu" style="color: white; border-color: rgba(255,255,255,0.3); background: rgba(255,255,255,0.1);">
+            Lihat Menu
+          </a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat">
+            <h4>4.8/5</h4>
+            <span>Rating</span>
+          </div>
+          <div class="stat">
+            <h4>397+</h4>
+            <span>Ulasan</span>
+          </div>
+          <div class="stat">
+            <h4>10+</h4>
+            <span>Tahun</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Menu Section -->
+  <section id="menu" class="section">
+    <div class="container">
+      <div class="section-heading">
+        <h2>Koleksi Menu</h2>
+        <p>Hidangan terbaik kami yang telah menjadi favorit ribuan pelanggan.</p>
+      </div>
+
+      <div class="menu-grid">
+        <!-- Gulai Kepala Ikan -->
+        <article class="menu-card">
+          <div class="menu-img-wrapper">
+            <img src="https://z-cdn-media.chatglm.cn/files/53e2d79f-af8e-402a-b90f-fc21b9634c03.png?auth_key=1866961733-74456a012553450e8f417b7368180bf7-0-b5b30d7ef18fbe46d4fd05dd35bdb60a" alt="Gulai Kepala Ikan" class="menu-img">
+            <div class="menu-overlay"></div>
+          </div>
+          <div class="menu-content">
+            <span class="menu-badge badge-hot">Best Seller</span>
+            <h3 class="menu-title">Gulai Kepala Ikan</h3>
+            <p class="menu-desc">
+              Kombinasi kuah kuning yang kaya rempah dengan daging kepala ikan yang lembut. 
+              Disajikan dengan pelengkap sayur segar.
+            </p>
+            <div class="menu-tags">
+              <span class="menu-tag">Ikan</span>
+              <span class="menu-tag">Pedas</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Ikan Bawal -->
+        <article class="menu-card">
+          <div class="menu-img-wrapper">
+            <img src="https://z-cdn-media.chatglm.cn/files/e7e6f6f8-e498-4de4-aaa2-6de184473974.png?auth_key=1866961077-d7d035ab776f427da2b9779deef6c6da-0-fad3659faeaf604dae2627961de546cd" alt="Ikan Bawal" class="menu-img">
+            <div class="menu-overlay"></div>
+          </div>
+          <div class="menu-content">
+            <span class="menu-badge badge-best">Chef's Choice</span>
+            <h3 class="menu-title">Ikan Bawal Goreng</h3>
+            <p class="menu-desc">
+              Ikan Bawal segar yang digoreng hingga keemasan. Tekstur renyah di luar, lembut di dalam dengan sambal khas.
+            </p>
+            <div class="menu-tags">
+              <span class="menu-tag">Goreng</span>
+              <span class="menu-tag">Seafood</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Nasi Liwet -->
+        <article class="menu-card">
+          <div class="menu-img-wrapper">
+            <img src="https://z-cdn-media.chatglm.cn/files/d39e0d07-41b9-4443-82ab-9f2dbc033ace.png?auth_key=1866961077-de1a5b55d4844cecbd3c2370a23a293e-0-e1e07286c9e5d631b9968ba31d6341b5" alt="Nasi Liwet" class="menu-img">
+            <div class="menu-overlay"></div>
+          </div>
+          <div class="menu-content">
+            <span class="menu-badge badge-hot">Popular</span>
+            <h3 class="menu-title">Ayam Goreng & Nasi Liwet</h3>
+            <p class="menu-desc">
+              Nasi liwet wangi yang dihidangkan bersama ayam goreng gurih dan sambal teri. Rasa rumahan yang tak terlupakan.
+            </p>
+            <div class="menu-tags">
+              <span class="menu-tag">Ayam</span>
+              <span class="menu-tag">Rice Bowl</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Sup Ayam -->
+        <article class="menu-card">
+          <div class="menu-img-wrapper">
+            <img src="https://z-cdn-media.chatglm.cn/files/27f64bca-ac5e-4eb0-b303-bcd1c214ecf8.png?auth_key=1866961733-887f9e5b178a447aac584f1b73fdb1c7-0-5670bd6a8cd212119b1ddbc08890c610" alt="Sup Ayam" class="menu-img">
+            <div class="menu-overlay"></div>
+          </div>
+          <div class="menu-content">
+            <span class="menu-badge badge-best">Healthy</span>
+            <h3 class="menu-title">Sup Ayam Bening</h3>
+            <p class="menu-desc">
+              Sup ayam yang jernih dan menyegarkan, diisi dengan sayuran organik pilihan. Hangat dan menyehatkan.
+            </p>
+            <div class="menu-tags">
+              <span class="menu-tag">Sup</span>
+              <span class="menu-tag">Healthy</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Nasi Daun Pisang -->
+        <article class="menu-card">
+          <div class="menu-img-wrapper">
+            <img src="https://z-cdn-media.chatglm.cn/files/921b9ae3-7589-4b7d-8d90-c8dac871b6fd.png?auth_key=1866961077-78dfbca665ce4c38b7c79b0f91eeb322-0-dcf9f92d28552bf93065ab7b66bd08ea" alt="Nasi Daun Pisang" class="menu-img">
+            <div class="menu-overlay"></div>
+          </div>
+          <div class="menu-content">
+            <span class="menu-badge badge-hot">Signature</span>
+            <h3 class="menu-title">Nasi Daun Pisang</h3>
+            <p class="menu-desc">
+              Hidangan lengkap nasi, ayam, sayur, dan sambal yang dibungkus rapi menggunakan daun pisang.
+            </p>
+            <div class="menu-tags">
+              <span class="menu-tag">Tradisional</span>
+              <span class="menu-tag">Lengkap</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Tumpeng -->
+        <article class="menu-card">
+          <div class="menu-img-wrapper">
+            <img src="https://z-cdn-media.chatglm.cn/files/a866312a-e494-4548-be72-7c3fef894da5.png?auth_key=1866961077-0ef6e299bbda4827bd5a6eaa9a1a75b2-0-e323893fd1461fc06fec57686d23cb19" alt="Tumpeng" class="menu-img">
+            <div class="menu-overlay"></div>
+          </div>
+          <div class="menu-content">
+            <span class="menu-badge badge-best">Catering</span>
+            <h3 class="menu-title">Tumpeng Spesial</h3>
+            <p class="menu-desc">
+              Nasi kuning berbentuk tumpeng dengan lauk pauk melimpah. Sempurna untuk merayakan momen berharga Anda.
+            </p>
+            <div class="menu-tags">
+              <span class="menu-tag">Event</span>
+              <span class="menu-tag">Custom</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Catering Section -->
+  <section id="catering" class="section">
+    <div class="container">
+      <div class="catering">
+        <div class="section-heading">
+          <h2>Layanan Premium</h2>
+          <p>Kami siap melayani kebutuhan kuliner untuk acara Anda.</p>
+        </div>
+        <div class="catering-grid">
+          <div class="catering-card">
+            <div class="catering-title">Corporate Catering</div>
+            <p class="menu-desc">Menu prasmanan atau bento box untuk meeting, seminar, dan acara perusahaan.</p>
+          </div>
+          <div class="catering-card">
+            <div class="catering-title">Wedding & Event</div>
+            <p class="menu-desc">Paket pernikahan dan acara spesial dengan dekorasi mewah dan rasa terbaik.</p>
+          </div>
+          <div class="catering-card">
+            <div class="catering-title">Tumpeng & Syukuran</div>
+            <p class="menu-desc">Pesan Tumpeng untuk ulang tahun, pembukaan kantor, atau syukuran keluarga.</p>
+          </div>
+          <div class="catering-card">
+            <div class="catering-title">Nasi Box Premium</div>
+            <p class="menu-desc">Nasi bungkus dan kotak dengan kualitas rasa restoran untuk bekal perjalanan.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimoni -->
+  <section id="testimoni" class="section">
+    <div class="container">
+      <div class="section-heading">
+        <h2>Kata Mereka</h2>
+        <p>Pengalaman pelanggan yang telah merasakan kehangatan Muara Jaya.</p>
+      </div>
+      <div class="testi-grid">
+        <div class="testi-card">
+          <div class="testi-rating">
+            <i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i>
+          </div>
+          <p class="testi-text">"Tempatnya sangat nyaman dan menu Gulai Kepala Ikannya juara. Rasa bumbunya meresap sempurna."</p>
+          <div class="testi-author">
+            <div class="testi-avatar">A</div>
+            <span style="font-weight: 600;">Alvin Chandra</span>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-rating">
+            <i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i>
+          </div>
+          <p class="testi-text">"This is our family restaurant. Makanan selalu segar, terutama Ikan Bawal gorengnya."</p>
+          <div class="testi-author">
+            <div class="testi-avatar">D</div>
+            <span style="font-weight: 600;">Dewi Chan</span>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-rating">
+            <i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i>
+          </div>
+          <p class="testi-text">"Wajib coba Nasi Liwet dan Ayam Gorengnya. Kombinasi yang tidak pernah salah."</p>
+          <div class="testi-author">
+            <div class="testi-avatar">G</div>
+            <span style="font-weight: 600;">Good Food</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact & Location -->
+  <section id="contact" class="section">
+    <div class="container">
+      <div class="info-layout">
+        <div>
+          <h2>Kunjungi Kami</h2>
+          <p style="margin-bottom: 32px; color: var(--text-muted);">
+            Kami menanti kedatangan Anda untuk menikmati hidangan terbaik kami di pusat kota Medan.
+          </p>
+          
+          <div style="display: flex; flex-direction: column; gap: 24px;">
+            <div style="display: flex; gap: 16px;">
+              <div style="background: #fff7ed; width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: var(--primary);">
+                <i class="ph ph-map-pin" style="font-size: 1.25rem;"></i>
+              </div>
+              <div>
+                <h4 style="font-size: 1.1rem; margin-bottom: 4px;">Alamat</h4>
+                <p style="color: var(--text-muted);">Jl. S. Parman No.A1, Medan Baru, Sumatera Utara</p>
+              </div>
+            </div>
+            
+            <div style="display: flex; gap: 16px;">
+              <div style="background: #fff7ed; width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: var(--primary);">
+                <i class="ph ph-whatsapp-logo" style="font-size: 1.25rem;"></i>
+              </div>
+              <div>
+                <h4 style="font-size: 1.1rem; margin-bottom: 4px;">WhatsApp</h4>
+                <p style="color: var(--text-muted);">+62 878-6706-9200</p>
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 16px;">
+              <div style="background: #fff7ed; width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: var(--primary);">
+                <i class="ph ph-clock" style="font-size: 1.25rem;"></i>
+              </div>
+              <div>
+                <h4 style="font-size: 1.1rem; margin-bottom: 4px;">Jam Buka</h4>
+                <p style="color: var(--text-muted);">Setiap Hari: 08.00 - 21.00 WIB</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div style="background: white; padding: 24px; border-radius: var(--radius-lg); border: 1px solid var(--border); box-shadow: var(--shadow-card);">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3982.015323637962!2d98.654898!3d3.567445!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x303131ce6b8b094d%3A0x6b8b8b8b8b8b8b8b!2sJl.%20S.%20Parman%20No.A1%2C%20Petisah%20Hulu%2C%20Kec.%20Medan%20Baru%2C%20Kota%20Medan%2C%20Sumatera%20Utara%2020151!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid"
+            style="width: 100%; height: 300px; border: none; border-radius: var(--radius-md);"
+            loading="lazy"
+            allowfullscreen
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 48px;">
+        <div>
+          <h3>MUARA JAYA</h3>
+          <p style="line-height: 1.8; margin-bottom: 24px;">
+            Rumah makan tradisional dengan sentuhan modern. Menghadirkan cita rasa asli Indonesia sejak 2010.
+          </p>
+          <div style="display: flex; gap: 16px;">
+            <a href="#" style="color: white;"><i class="ph ph-instagram-logo" style="font-size: 1.5rem;"></i></a>
+            <a href="#" style="color: white;"><i class="ph ph-facebook-logo" style="font-size: 1.5rem;"></i></a>
+            <a href="#" style="color: white;"><i class="ph ph-tiktok-logo" style="font-size: 1.5rem;"></i></a>
+          </div>
+        </div>
+        
+        <div>
+          <h3>Navigasi</h3>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 12px;">
+            <li><a href="#home">Beranda</a></li>
+            <li><a href="#menu">Menu Favorit</a></li>
+            <li><a href="#catering">Layanan Catering</a></li>
+            <li><a href="#testimoni">Ulasan Pelanggan</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3>Legal</h3>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 12px;">
+            <li><a href="#">Kebijakan Privasi</a></li>
+            <li><a href="#">Syarat & Ketentuan</a></li>
+            <li><a href="#">Karir</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        &copy; 2025 Restoran Muara Jaya. All rights reserved. Designed with elegance.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Simple script for Nav Toggle and Scroll Spy
+    (function() {
+      const header = document.querySelector('.header');
+      const navToggle = document.querySelector('.nav-toggle');
+      const mobileNav = document.querySelector('.mobile-nav');
+      const sections = document.querySelectorAll('section');
+      const navLinks = document.querySelectorAll('.nav a, .mobile-nav a');
+
+      // Mobile Nav
+      navToggle.addEventListener('click', () => {
+        mobileNav.classList.toggle('open');
+      });
+
+      // Close mobile nav on link click
+      navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          mobileNav.classList.remove('open');
+        });
+      });
+
+      // Scroll Spy & Header Blur
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+          header.style.background = 'rgba(255, 255, 255, 0.95)';
+          header.style.boxShadow = '0 4px 20px rgba(0,0,0,0.05)';
+        } else {
+          header.style.background = 'rgba(255, 255, 255, 0.7)';
+          header.style.boxShadow = 'none';
+        }
+
+        let current = '';
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.clientHeight;
+          if (scrollY >= (sectionTop - 150)) {
+            current = section.getAttribute('id');
+          }
+        });
+
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href').includes(current)) {
+            link.classList.add('active');
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
